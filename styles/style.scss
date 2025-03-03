@@ -1,0 +1,405 @@
+$primary-color: #4361ee;
+$accent-color: #3a0ca3;
+$success-color: #36ff86;
+$danger-color: red;
+$warning-color: #f8961e;
+$text-color: #333;
+$light-bg: #f9f9f9;
+$dark-bg: #222;
+$border-radius: 8px;
+$box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+$font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-family;
+  background-color: #f5f7fa;
+  color: $text-color;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+header {
+  background-color: white;
+  padding: 20px 30px;
+  box-shadow: $box-shadow;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  h1 {
+    color: $primary-color;
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.8rem;
+  }
+
+  .controls {
+    display: flex;
+    gap: 15px;
+    margin: 10px 0;
+    input {
+      padding: 10px 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: $border-radius;
+      width: 250px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+      }
+    }
+    button {
+      background-color: $primary-color;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: $border-radius;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: $accent-color;
+      }
+    }
+  }
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+#usersTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+  overflow: hidden;
+  margin-top: 20px;
+
+  th,
+  td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eaeaea;
+    text-align: center;
+  }
+
+  th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+
+  tr:hover {
+    background-color: #f9f9f9;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+
+  button {
+    border: none;
+    padding: 8px 12px;
+    border-radius: $border-radius;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &:first-child {
+      background-color: transparent;
+    }
+
+    &:last-child {
+      background-color: transparent;
+    }
+  }
+}
+
+.admin-user {
+  border-left: 4px solid $danger-color;
+}
+
+.regular-user {
+  border-left: 4px solid $primary-color;
+}
+
+.guest-user {
+  border-left: 4px solid $success-color;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease;
+
+  .modal-content {
+    background-color: white;
+    margin: 8% auto;
+    padding: 30px;
+    border-radius: $border-radius;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    animation: slideIn 0.3s ease;
+    position: relative;
+
+    .close-button {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      color: #aaa;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $danger-color;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+#userForm {
+  margin-top: 20px;
+
+  h2 {
+    color: $primary-color;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+  }
+
+  input,
+  select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: $border-radius;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+    }
+  }
+
+  button {
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: $border-radius;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+
+    &:hover {
+      background-color: $accent-color;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  main {
+    padding: 0 15px 30px;
+  }
+
+  #usersTable {
+    th,
+    td {
+      padding: 12px 10px;
+    }
+  }
+
+  .action-buttons {
+    button {
+      padding: 6px 10px;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+
+    h1 {
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .controls {
+      width: 100%;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
+  #userSearch,
+  #addUserBtn {
+    width: 100%;
+  }
+
+  #usersTable {
+    font-size: 0.9rem;
+  }
+
+  .modal-content {
+    width: 95%;
+    margin: 10% auto;
+    padding: 20px;
+  }
+
+  #userForm {
+    input,
+    select {
+      padding: 10px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  #usersTable {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+
+    th,
+    td {
+      padding: 10px 8px;
+      font-size: 0.85rem;
+    }
+  }
+
+  header h1 {
+    font-size: 1.3rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 5px;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .modal-content {
+    padding: 15px;
+    margin: 15% auto;
+  }
+
+  #userForm h2 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 320px) {
+  header h1 {
+    font-size: 1.1rem;
+  }
+
+  #usersTable th,
+  #usersTable td {
+    padding: 8px 5px;
+    font-size: 0.75rem;
+  }
+
+  .modal-content {
+    padding: 12px;
+    margin: 20% auto;
+  }
+
+  #userForm label {
+    font-size: 0.9rem;
+  }
+
+  #userForm input,
+  #userForm select {
+    padding: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+
+  #userForm button {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .close-button {
+    right: 12px;
+    top: 8px;
+    font-size: 24px;
+  }
+}
+
+.no-data {
+  text-align: center;
+  font-style: italic;
+  color: #999;
+  padding: 10px;
+}

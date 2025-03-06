@@ -5,7 +5,6 @@ class User {
     this.email = email;
     this.role = role;
   }
-
   renderRow() {
     const roleRuArr = {
       admin: "Администратор",
@@ -71,6 +70,7 @@ class GuestUser extends User {
 
 class UserManager {
   constructor() {
+
     this.usersTableBody = document.querySelector("#usersTable tbody");
     this.userFormModal = document.querySelector("#userFormModal");
     this.addUserBtn = document.getElementById("addUserBtn");
@@ -78,6 +78,7 @@ class UserManager {
     this.userForm = document.getElementById("userForm");
     this.searchInput = document.getElementById("userSearch");
     this.modalTitle = document.querySelector(".modal-title");
+
 
     this.users = this.loadUsers() || [
       new AdminUser(1, "Иван", "ivan.admin@example.com", "admin", [
@@ -91,7 +92,10 @@ class UserManager {
       new RegularUser(4, "Алексей", "alex.regular@example.com", "regular"),
     ];
 
+
     this.bindEvents();
+
+    this.render(this.users);
   }
 
   updateLocalStorage() {
@@ -194,11 +198,11 @@ class UserManager {
       const name = document.querySelector("#name").value;
       const email = document.querySelector("#email").value;
       const role = document.querySelector("#role").value;
-      const UserClass = this.getCorrectUserClass(role);
 
       if (userId) {
         const userIndex = this.users.findIndex((user) => user.id === +userId);
         if (userIndex !== -1) {
+          const UserClass = this.getCorrectUserClass(role);
           if (role === "admin") {
             this.users[userIndex] = new UserClass(+userId, name, email, role, [
               "create_user",
@@ -215,6 +219,7 @@ class UserManager {
           this.users.length > 0
             ? Math.max(...this.users.map((user) => user.id)) + 1
             : 1;
+        const UserClass = this.getCorrectUserClass(role);
         if (role === "admin") {
           this.users.push(
             new UserClass(newUserId, name, email, role, [
@@ -260,4 +265,3 @@ class UserManager {
 }
 
 const userManager = new UserManager();
-userManager.render(userManager.users);
